@@ -1,82 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.wjjzst</groupId>
     <artifactId>algorithms-data-structures</artifactId>
-    <version>0.0.1</version>
+    <parent>
+        <artifactId>java-all</artifactId>
+        <groupId>com.wjjzst</groupId>
+        <version>0.0.1</version>
+    </parent>
     <modules>
         <module>first_stage</module>
         <module>weekly-algorithms</module>
         <module>second_stage</module>
     </modules>
     <packaging>pom</packaging>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.encoding>UTF-8</java.encoding>
-        <java.version>1.8</java.version>
-        <lombok.version>1.18.20</lombok.version>
-        <!-- MyBatis Generator -->
-        <targetJavaProject>${basedir}/src/main/java</targetJavaProject> <!-- Java接口和实体类 -->
-        <targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject><!-- XML生成路径 -->
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.61</version>
-        </dependency>
-    </dependencies>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <verbose>true</verbose>
-                        <meminitial>128m</meminitial>
-                        <maxmem>512m</maxmem>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                        <encoding>${java.encoding}</encoding>
-                        <debug>true</debug>
-                        <failOnError>true</failOnError>
-                        <failOnWarning>false</failOnWarning>
-                        <optimize>true</optimize>
-                        <showDeprecation>true</showDeprecation>
-                        <showWarnings>true</showWarnings>
-                        <compilerArgs>
-                            <arg>-verbose</arg>
-                            <arg>-Xlint:unchecked</arg>
-                            <arg>-Xlint:deprecation</arg>
-                            <arg>-XDignore.symbol.file</arg>
-                        </compilerArgs>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <addMavenDescriptor>false</addMavenDescriptor>
-                        </archive>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <configuration>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 </project>
