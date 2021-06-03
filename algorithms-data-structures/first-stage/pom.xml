@@ -11,7 +11,7 @@
     <artifactId>first-stage</artifactId>
     <packaging>jar</packaging>
 
-    <name>first_stage</name>
+    <name>first-stage</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -15,7 +15,7 @@ import java.util.Set;
 public class FileSize {
     public static void main(String[] args) {
         // String dir = "/Users/wjj/IdeaProjects/java-all/algorithms-data-structures/first-stage";
-        String dir = "/Users/wjj/IdeaProjects/wjjjavalearn/AlgorithmsAndDataStructures/first_stage";
+        String dir = "/Users/wjj/IdeaProjects/wjjjavalearn/algorithms-data-structures/first_stage";
         File file = new File(dir);
         Counter counter =new Counter(1);
         countFileSize(file,counter);
