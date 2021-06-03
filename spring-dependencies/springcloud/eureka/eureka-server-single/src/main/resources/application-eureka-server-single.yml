@@ -1,0 +1,25 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: eureka-server-single
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false  # 非集群模式不需要向其他eureka注册 # 自己就是注册中心，不用注册自己
+    fetch-registry: false # 要不要去注册中心获取其他服务的地址
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+
+
+# 优化一
+#  server:
+#    eviction-interval-timer-in-ms: 5000  #剔除过期实例频率加快
+#    response-cache-auto-expiration-in-seconds: 60  # 实例信息失效时间
+#    enable-self-preservation: false  # 关闭自我保护机制
+
+
+# 优化二  不关闭自我保护机制的情况下 优化 需要client端配合配置eureka.instance.ease-renewal-interval-in-seconds=10
+#  server:
+#    renewal-percent-threshold: 0.49

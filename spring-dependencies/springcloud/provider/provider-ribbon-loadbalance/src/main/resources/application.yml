@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: server9
+    # active: server2
+    # active: server3
