@@ -19,7 +19,7 @@
         <module>consumer</module>
         <module>ribbon</module>
         <module>hystrix</module>
-        <module>springcloudalibaba</module>
+        <module>springcloud-alibaba</module>
         <module>kubernetes</module>
     </modules>
 
@@ -46,14 +46,14 @@
     </dependencies>
 
     <repositories>
-        <repository>
+        <!--<repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/libs-milestone</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-        </repository>
+        </repository>-->
     </repositories>
 
 

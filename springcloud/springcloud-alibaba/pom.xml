@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springcloudalibaba</artifactId>
+    <artifactId>springcloud-alibaba</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>nacos</module>
