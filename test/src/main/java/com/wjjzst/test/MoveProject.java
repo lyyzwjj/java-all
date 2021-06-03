@@ -38,8 +38,8 @@ public class MoveProject {
 //        changeFileSuffixs.add(".java");
 //        String sourceStr = "com.taiping";
 //        String targetStr = "cn.wjjzst";
-//        String sourcefilePath = "/Users/wjj/IdeaProjects/wjjjavalearn/AlgorithmsAndDataStructures/first_stage/src/main/java/com/wjjzst/ads/firstStage/exam/Category.java";
-//        String targetFilePath = "/Users/wjj/IdeaProjects/javalearn/AlgorithmsAndDataStructures/first_stage/src/main/java/cn/wolfcode/ads/firstStage/exam/Category.java";
+//        String sourcefilePath = "/Users/wjj/IdeaProjects/wjjjavalearn/AlgorithmsAndDataStructures/first_stage/src/main/java/com/wjjzst/ads/first_stage/exam/Category.java";
+//        String targetFilePath = "/Users/wjj/IdeaProjects/javalearn/AlgorithmsAndDataStructures/first_stage/src/main/java/cn/wolfcode/ads/first_stage/exam/Category.java";
 //        String sourcefilePath = "/Users/wjj/IdeaProjects/wjjjavalearn/AlgorithmsAndDataStructures/second_stage/src/main/java/com/wjjzst/ads/secondStage/learn";
 //        String targetFilePath = "/Users/wjj/IdeaProjects/javalearn/AlgorithmsAndDataStructures/second_stage/src/main/java/cn/wolfcode/ads/secondStage/learn";
 //        String sourcePath = "/com/wjjzst/";
