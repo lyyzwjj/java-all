@@ -10,7 +10,18 @@
     <packaging>pom</packaging>
     <name>java-all</name>
     <modules>
-        <module>spring-dependencies</module>
+        <module>common</module>
+        <module>algorithms-data-structures</module>
+        <module>juc</module>
+        <module>jvm</module>
+        <module>io</module>
+        <module>gui</module>
+        <module>db</module>
+        <module>nosql</module>
+        <module>queue</module>
+        <module>springcloud</module>
+        <module>test</module>
+        <module>spring</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,13 +37,20 @@
         <targetXMLPackage>mybatis\sqlmap</targetXMLPackage>
         <druid.version>1.1.24</druid.version>
         <flyway.version>5.2.1</flyway.version>
-        <netty-all.version>4.1.6.Final</netty-all.version>
+        <spring-boot.version>2.5.0</spring-boot.version>
         <spring.cloud.version>2020.0.3</spring.cloud.version>
         <spring.cloud.alibaba.version>2.2.1.RELEASE</spring.cloud.alibaba.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
