@@ -1,4 +1,4 @@
-package com.wjjzst.ads.weeklyAlgorithms.learn;
+package com.wjjzst.ads.weekly_algorithms.learn;
 
 import java.util.Arrays;
 import java.util.List;

@@ -6,12 +6,13 @@
         <groupId>com.wjjzst</groupId>
         <artifactId>java-all</artifactId>
         <version>0.0.1</version>
+        <relativePath/>
     </parent>
     <artifactId>algorithms-data-structures</artifactId>
     <modules>
         <module>first-stage</module>
-        <module>weekly-algorithms</module>
         <module>second-stage</module>
+        <module>weekly-algorithms</module>
     </modules>
     <packaging>pom</packaging>
 
