@@ -2,6 +2,7 @@ package com.wjjzst.ads.second_stage.learn._03_graph;
 
 import java.util.List;
 import java.util.Set;
+
 import com.wjjzst.ads.second_stage.learn._03_graph.Graph.EdgeInfo;
 
 /**
@@ -24,26 +25,37 @@ public class GraphMain {
     };
 
     public static void main(String[] args) {
-        // test1();
+        test1();
         // testBfs();
         // testDfs();
         // testTopologicalSort();
-        testMst();
+        // testMst();
     }
 
     private static void test1() {
-//        ListGraph<String, Integer> graph = new ListGraph<>();
-//        graph.addEdge("V1", "V0", 9);
-//        graph.addEdge("V1", "V2", 3);
-//        graph.addEdge("V2", "V0", 2);
-//        graph.addEdge("V2", "V3", 5);
-//        graph.addEdge("V3", "V4", 1);
-//        graph.addEdge("V0", "V4", 6);
-//
-//        graph.removeEdge("V0", "V4");
-        // graph.removeVertex("V0");
+        Graph.WeightManager<Integer> weightManager = new Graph.WeightManager<Integer>() {
+            @Override
+            public int compare(Integer w1, Integer w2) {
+                return 0;
+            }
 
-//        graph.print();
+            @Override
+            public Double add(Double w1, Double w2) {
+                return null;
+            }
+        };
+        ListGraph<String, Integer> graph = new ListGraph<>(weightManager);
+        graph.addEdge("V1", "V0", 9);
+        graph.addEdge("V1", "V2", 3);
+        graph.addEdge("V2", "V0", 2);
+        graph.addEdge("V2", "V3", 5);
+        graph.addEdge("V3", "V4", 1);
+        graph.addEdge("V0", "V4", 6);
+        graph.print();
+        graph.removeEdge("V0", "V4");
+        graph.print();
+        graph.removeVertex("V0");
+        graph.print();
     }
 
     private static void testMst() {
