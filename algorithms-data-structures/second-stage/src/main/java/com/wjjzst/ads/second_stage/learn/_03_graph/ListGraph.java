@@ -11,11 +11,9 @@ import java.util.*;
  * @desc:
  */
 public class ListGraph<V, E> extends Graph<V, E> {
-    private Map<V, Vertex<V, E>> vertices = new HashMap<>();
-    private Set<Edge<V, E>> edges = new HashSet<>();
-    private Comparator<Edge<V, E>> edgeComparator = (e1, e2) -> {
-        return weightManager.compare(e1.weight, e2.weight);
-    };
+    private final Map<V, Vertex<V, E>> vertices = new HashMap<>();
+    private final Set<Edge<V, E>> edges = new HashSet<>();
+    private final Comparator<Edge<V, E>> edgeComparator = (e1, e2) -> weightManager.compare(e1.weight, e2.weight);
 
 
     public ListGraph(WeightManager<E> weightManager) {
@@ -200,7 +198,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
             Vertex<V, E> vertex = queue.poll();
             list.add(vertex.value);
             for (Edge<V, E> edge : vertex.outEdges) {
-                Integer toIn = ins.get(edge.to) - 1;
+                int toIn = ins.get(edge.to) - 1;
                 if (toIn == 0) {
                     queue.offer(edge.to);
                 } else {
@@ -212,7 +210,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
     }
 
     @Override
-    public Set<EdgeInfo<V, E>> mst() {
+    public Set<EdgeInfo<V, E>> minimumSpanningTree() {
         return prim();
     }
 
@@ -223,7 +221,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
         Set<Vertex<V, E>> addedVertices = new HashSet<>();
         Vertex<V, E> vertex = it.next();
         addedVertices.add(vertex);
-        BinaryHeap<Edge<V, E>> heap = new BinaryHeap(vertex.outEdges, edgeComparator);
+        BinaryHeap<Edge<V, E>> heap = new BinaryHeap<>(vertex.outEdges, edgeComparator);
         int edgeSize = vertices.size() - 1;
         while (!heap.isEmpty() && edgeInfos.size() < edgeSize) {
             Edge<V, E> edge = heap.remove();

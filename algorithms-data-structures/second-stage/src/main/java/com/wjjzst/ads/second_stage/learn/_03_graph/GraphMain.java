@@ -29,7 +29,7 @@ public class GraphMain {
         // testBfs();
         // testDfs();
         // testTopologicalSort();
-        // testMst();
+        testMst();
     }
 
     private static void test1() {
@@ -60,7 +60,7 @@ public class GraphMain {
 
     private static void testMst() {
         Graph<Object, Double> graph = undirectedGraph(Data.MST_02);
-        Set<EdgeInfo<Object, Double>> edgeInfos = graph.mst();
+        Set<EdgeInfo<Object, Double>> edgeInfos = graph.minimumSpanningTree();
         for (EdgeInfo<Object, Double> edgeInfo : edgeInfos) {
             System.out.println(edgeInfo);
         }

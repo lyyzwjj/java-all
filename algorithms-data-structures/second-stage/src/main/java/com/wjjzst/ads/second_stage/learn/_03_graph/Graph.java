@@ -43,7 +43,7 @@ public abstract class Graph<V, E> {
     // 拓扑排序 有向无环图 一直找入度为0的
     public abstract List<V> topologicalSort();
 
-    public abstract Set<EdgeInfo<V, E>> mst();
+    public abstract Set<EdgeInfo<V, E>> minimumSpanningTree();
 
     public interface WeightManager<E> {
         int compare(E w1, E w2);
