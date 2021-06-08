@@ -304,7 +304,6 @@ public class ListGraph<V, E> extends Graph<V, E> {
         public boolean equals(Object obj) {
             if (this == obj) return true;
             if (obj == null || getClass() != obj.getClass()) return false;
-
             Vertex<V, E> vertex = (Vertex<V, E>) obj;
 
             return Objects.equals(value, vertex.value);

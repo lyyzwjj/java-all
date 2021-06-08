@@ -48,7 +48,7 @@ public abstract class Graph<V, E> {
     public interface WeightManager<E> {
         int compare(E w1, E w2);
 
-        Double add(Double w1, Double w2);
+        // Double add(Double w1, Double w2);
     }
 
     public interface VertexVisitor<V> {

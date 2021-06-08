@@ -11,39 +11,29 @@ import com.wjjzst.ads.second_stage.learn._03_graph.Graph.EdgeInfo;
  * @desc:
  */
 public class GraphMain {
-    private static Graph.WeightManager<Double> weightManager = new Graph.WeightManager<Double>() {
+    private static final Graph.WeightManager<Double> weightManager = new Graph.WeightManager<Double>() {
         @Override
         public int compare(Double w1, Double w2) {
             // return w1.compareTo(w2); //大顶堆
             return w2.compareTo(w1); // 小顶堆
         }
 
-        @Override
-        public Double add(Double w1, Double w2) {
-            return w1 + w2;
-        }
+//        @Override
+//        public Double add(Double w1, Double w2) {
+//            return w1 + w2;
+//        }
     };
 
     public static void main(String[] args) {
         test1();
-        // testBfs();
-        // testDfs();
-        // testTopologicalSort();
-        testMst();
+        testBfs();
+        testDfs();
+        testTopologicalSort();
+        minimumSpanningTree();
     }
 
     private static void test1() {
-        Graph.WeightManager<Integer> weightManager = new Graph.WeightManager<Integer>() {
-            @Override
-            public int compare(Integer w1, Integer w2) {
-                return 0;
-            }
-
-            @Override
-            public Double add(Double w1, Double w2) {
-                return null;
-            }
-        };
+        Graph.WeightManager<Integer> weightManager = (w1, w2) -> w1-w2;
         ListGraph<String, Integer> graph = new ListGraph<>(weightManager);
         graph.addEdge("V1", "V0", 9);
         graph.addEdge("V1", "V2", 3);
@@ -58,7 +48,7 @@ public class GraphMain {
         graph.print();
     }
 
-    private static void testMst() {
+    private static void minimumSpanningTree() {
         Graph<Object, Double> graph = undirectedGraph(Data.MST_02);
         Set<EdgeInfo<Object, Double>> edgeInfos = graph.minimumSpanningTree();
         for (EdgeInfo<Object, Double> edgeInfo : edgeInfos) {
