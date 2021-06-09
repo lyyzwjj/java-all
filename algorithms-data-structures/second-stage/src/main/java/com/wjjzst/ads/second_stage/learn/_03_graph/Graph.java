@@ -2,6 +2,7 @@ package com.wjjzst.ads.second_stage.learn._03_graph;
 
 import lombok.Data;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -48,7 +49,7 @@ public abstract class Graph<V, E> {
     public interface WeightManager<E> {
         int compare(E w1, E w2);
 
-        // Double add(Double w1, Double w2);
+        E add(E w1, E w2);
     }
 
     public interface VertexVisitor<V> {
@@ -66,6 +67,12 @@ public abstract class Graph<V, E> {
             this.to = to;
             this.weight = weight;
         }
+    }
+
+    @Data
+    public static class PathInfo<V, E> {
+        private E weight;
+        private final LinkedList<EdgeInfo<V, E>> edgeInfos = new LinkedList<>();
     }
 
 }

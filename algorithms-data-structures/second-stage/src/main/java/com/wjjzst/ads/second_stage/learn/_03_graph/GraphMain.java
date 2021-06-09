@@ -18,10 +18,10 @@ public class GraphMain {
             return w2.compareTo(w1); // 小顶堆
         }
 
-//        @Override
-//        public Double add(Double w1, Double w2) {
-//            return w1 + w2;
-//        }
+        @Override
+        public Double add(Double w1, Double w2) {
+            return w1 + w2;
+        }
     };
 
     public static void main(String[] args) {
@@ -33,7 +33,17 @@ public class GraphMain {
     }
 
     private static void test1() {
-        Graph.WeightManager<Integer> weightManager = (w1, w2) -> w1-w2;
+        Graph.WeightManager<Integer> weightManager = new Graph.WeightManager<Integer>() {
+            @Override
+            public int compare(Integer w1, Integer w2) {
+                return w1 - w2;
+            }
+
+            @Override
+            public Integer add(Integer w1, Integer w2) {
+                return w1 + w2;
+            }
+        };
         ListGraph<String, Integer> graph = new ListGraph<>(weightManager);
         graph.addEdge("V1", "V0", 9);
         graph.addEdge("V1", "V2", 3);

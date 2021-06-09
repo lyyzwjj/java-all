@@ -2,6 +2,7 @@ package com.wjjzst.ads.second_stage.learn._03_graph;
 
 import com.wjjzst.ads.first_stage.learn.common.printer.BinaryTrees;
 import com.wjjzst.ads.first_stage.learn.heap.BinaryHeap;
+import com.wjjzst.ads.second_stage.learn._02_union.GenericUnionFind;
 
 import java.util.*;
 
@@ -211,7 +212,9 @@ public class ListGraph<V, E> extends Graph<V, E> {
 
     @Override
     public Set<EdgeInfo<V, E>> minimumSpanningTree() {
-        return prim();
+        // Set<EdgeInfo<V, E>> edgeInfos = prim();
+        Set<EdgeInfo<V, E>> edgeInfos = kruskal();
+        return edgeInfos;
     }
 
     public Set<EdgeInfo<V, E>> prim() {
@@ -237,8 +240,46 @@ public class ListGraph<V, E> extends Graph<V, E> {
     }
 
     public Set<EdgeInfo<V, E>> kruskal() {
-        return null;
+        int edgeSize;  // 最小生成树的边的数量等于顶点数量减一
+        if ((edgeSize = vertices.size() - 1) < 0) {
+            return null;
+        }
+        Set<EdgeInfo<V, E>> edgeInfos = new HashSet<>();
+        BinaryHeap<Edge<V, E>> heap = new BinaryHeap<>(edges, edgeComparator);
+        GenericUnionFind<Vertex<V, E>> uf = new GenericUnionFind<>();
+        vertices.values().forEach(uf::makeSet);
+        while (!heap.isEmpty() && edgeInfos.size() < edgeSize) {
+            Edge<V, E> edge = heap.remove();
+            if (uf.isSame(edge.from, edge.to)) {
+                continue;
+            }
+            edgeInfos.add(edge.info());
+            uf.union(edge.from, edge.to);
+        }
+        return edgeInfos;
     }
+
+    /*public Set<EdgeInfo<V, E>> myKruskal() {
+        if (edges.size() == 0) {
+            return null;
+        }
+        BinaryHeap<Edge<V, E>> heap = new BinaryHeap<>(edges, edgeComparator);
+        GenericUnionFind<Vertex<V, E>> uf = new GenericUnionFind<>();
+        vertices.values().forEach(uf::makeSet);
+        Set<EdgeInfo<V, E>> visitedEdges = new HashSet<>();
+        while (!heap.isEmpty() && visitedEdges.size() < vertices.size()) {
+            Edge<V, E> remove = heap.remove();
+            Vertex<V, E> from = remove.from;
+            Vertex<V, E> to = remove.to;
+            if (uf.isSame(from, to)) {
+                continue;
+            }
+            // uf.makeSet(to); //此处不是讲to加进并查集  之前的并查集已经有了这个元素了
+            uf.union(from, to); // 现在只需要将两个点union到同一个集里面
+            visitedEdges.add(remove.info());
+        }
+        return visitedEdges;
+    }*/
     /*@Override
     public void dfs(V begin) {
         Vertex<V, E> beginVertex = vertices.get(begin);
