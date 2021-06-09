@@ -1,6 +1,7 @@
 package com.wjjzst.ads.second_stage.learn._03_graph;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.wjjzst.ads.second_stage.learn._03_graph.Graph.EdgeInfo;
@@ -15,7 +16,7 @@ public class GraphMain {
         @Override
         public int compare(Double w1, Double w2) {
             // return w1.compareTo(w2); //大顶堆
-            return w2.compareTo(w1); // 小顶堆
+            return w1.compareTo(w2); // 小顶堆
         }
 
         @Override
@@ -25,11 +26,19 @@ public class GraphMain {
     };
 
     public static void main(String[] args) {
-        test1();
-        testBfs();
-        testDfs();
-        testTopologicalSort();
-        minimumSpanningTree();
+//        test1();
+//        testBfs();
+//        testDfs();
+//        testTopologicalSort();
+//        minimumSpanningTree();
+        testSp();
+
+    }
+
+    private static void testSp() {
+        Graph<Object, Double> graph = undirectedGraph(Data.SP);
+        Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath("A");
+        sp.forEach((Object v, Graph.PathInfo<Object, Double> path) -> System.out.println(v + " - " + path));
     }
 
     private static void test1() {

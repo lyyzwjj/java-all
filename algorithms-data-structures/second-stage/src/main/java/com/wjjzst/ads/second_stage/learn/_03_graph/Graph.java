@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -46,6 +47,8 @@ public abstract class Graph<V, E> {
 
     public abstract Set<EdgeInfo<V, E>> minimumSpanningTree();
 
+    public abstract Map<V, PathInfo<V, E>> shortestPath(V begin);
+
     public interface WeightManager<E> {
         int compare(E w1, E w2);
 
@@ -56,23 +59,40 @@ public abstract class Graph<V, E> {
         boolean visit(V v);
     }
 
-    @Data
+
     public static class EdgeInfo<V, E> {
-        private V from;
-        private V to;
-        private E weight;
+        V from;
+        V to;
+        E weight;
 
         public EdgeInfo(V from, V to, E weight) {
             this.from = from;
             this.to = to;
             this.weight = weight;
         }
+
+        @Override
+        public String toString() {
+            return "EdgeInfo [" +
+                    "from=" + from +
+                    ", to=" + to +
+                    ", weight=" + weight +
+                    ']';
+        }
     }
 
-    @Data
+
     public static class PathInfo<V, E> {
-        private E weight;
-        private final LinkedList<EdgeInfo<V, E>> edgeInfos = new LinkedList<>();
+        E weight;
+        LinkedList<EdgeInfo<V, E>> edgeInfos = new LinkedList<>();
+
+        @Override
+        public String toString() {
+            return "PathInfo [" +
+                    "weight=" + weight +
+                    ", edgeInfos=" + edgeInfos +
+                    ']';
+        }
     }
 
 }
