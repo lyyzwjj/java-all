@@ -53,8 +53,10 @@ public class GraphMain {
 
     private static void testMultiSp() {
         // Graph<Object, Double> graph = directedGraph(Data.SP);// 无负权边
-        Graph<Object, Double> graph = undirectedGraph(Data.NEGATIVE_WEIGHT1);// 有负权边
+        Graph<Object, Double> graph = directedGraph(Data.NEGATIVE_WEIGHT1);// 有负权边
         Map<Object, Map<Object, Graph.PathInfo<Object, Double>>> sp = graph.shortestPath();
+        // Graph<Object, Double> graph = directedGraph(Data.NEGATIVE_WEIGHT2); // 有负权环
+        // Map<Object, Map<Object, Graph.PathInfo<Object, Double>>> sp = graph.shortestPath();
         sp.forEach((Object from, Map<Object, Graph.PathInfo<Object, Double>> paths) -> {
             System.out.println(from + "------------------------");
             paths.forEach((Object to, Graph.PathInfo<Object, Double> path) -> {
