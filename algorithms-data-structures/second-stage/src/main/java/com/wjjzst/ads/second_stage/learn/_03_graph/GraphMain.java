@@ -36,19 +36,32 @@ public class GraphMain {
 //        testDfs();
 //        testTopologicalSort();
 //        minimumSpanningTree();
-        testSp();
-
+//        testSp();
+        testMultiSp();
     }
 
     private static void testSp() {
-        // Graph<Object, Double> graph = undirectedGraph(Data.SP);// 无负权边
+        Graph<Object, Double> graph = undirectedGraph(Data.SP);// 无负权边
         // Graph<Object, Double> graph = undirectedGraph(Data.NEGATIVE_WEIGHT1);// 有负权边
-        // Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath("A");
-        Graph<Object, Double> graph = undirectedGraph(Data.NEGATIVE_WEIGHT2); // 有负权环
-        Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath(0);
+        Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath("A");
+        // Graph<Object, Double> graph = undirectedGraph(Data.NEGATIVE_WEIGHT2); // 有负权环
+        // Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath(0);
         if (sp != null) {
             sp.forEach((Object v, Graph.PathInfo<Object, Double> path) -> System.out.println(v + " - " + path));
         }
+    }
+
+    private static void testMultiSp() {
+        // Graph<Object, Double> graph = directedGraph(Data.SP);// 无负权边
+        Graph<Object, Double> graph = undirectedGraph(Data.NEGATIVE_WEIGHT1);// 有负权边
+        Map<Object, Map<Object, Graph.PathInfo<Object, Double>>> sp = graph.shortestPath();
+        sp.forEach((Object from, Map<Object, Graph.PathInfo<Object, Double>> paths) -> {
+            System.out.println(from + "------------------------");
+            paths.forEach((Object to, Graph.PathInfo<Object, Double> path) -> {
+                System.out.println(to + " - " + path);
+
+            });
+        });
     }
 
     private static void test1() {

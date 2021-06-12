@@ -265,7 +265,6 @@ public class ListGraph<V, E> extends Graph<V, E> {
         return bellmanFord(begin);
     }
 
-
     public Map<V, PathInfo<V, E>> dijkstra(V begin) {
         Vertex<V, E> beginVertex = vertices.get(begin);
         if (beginVertex == null) {
@@ -273,12 +272,13 @@ public class ListGraph<V, E> extends Graph<V, E> {
         }
         Map<V, PathInfo<V, E>> selectedPaths = new HashMap<>();
         Map<Vertex<V, E>, PathInfo<V, E>> paths = new HashMap<>();
-        for (Edge<V, E> edge : beginVertex.outEdges) {
-            PathInfo<V, E> path = new PathInfo<>();
-            path.weight = edge.weight;
-            path.edgeInfos.add(edge.info());
-            paths.put(edge.to, path);
-        }
+        paths.put(beginVertex, new PathInfo<>(weightManager.zero()));
+//        for (Edge<V, E> edge : beginVertex.outEdges) {
+//            PathInfo<V, E> path = new PathInfo<>();
+//            path.weight = edge.weight;
+//            path.edgeInfos.add(edge.info());
+//            paths.put(edge.to, path);
+//        }
         while (!paths.isEmpty()) {
             Map.Entry<Vertex<V, E>, PathInfo<V, E>> minEntry = getMinPath(paths);
             Vertex<V, E> minVertex = minEntry.getKey();
@@ -322,9 +322,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
             return null;
         }
         Map<V, PathInfo<V, E>> selectedPaths = new HashMap<>();
-        PathInfo<V, E> edgeInfo = new PathInfo<>();
-        edgeInfo.weight = weightManager.zero();
-        selectedPaths.put(begin, edgeInfo);
+        selectedPaths.put(begin, new PathInfo<>(weightManager.zero()));
         int count = vertices.size() - 1;
         // 对所有的边进行一次松弛 (n-1)次松弛
         for (int i = 0; i < count; i++) {
@@ -384,6 +382,56 @@ public class ListGraph<V, E> extends Graph<V, E> {
         return minEntry;
     }
 
+
+    @Override
+    public Map<V, Map<V, PathInfo<V, E>>> shortestPath() {
+        Map<V, Map<V, PathInfo<V, E>>> paths = new HashMap<>();
+        for (Edge<V, E> edge : edges) {
+            Map<V, PathInfo<V, E>> map = paths.computeIfAbsent(edge.from.value, k -> new HashMap<>());
+            PathInfo<V, E> pathInfo = new PathInfo<>(edge.weight);
+            pathInfo.edgeInfos.add(edge.info());
+            map.put(edge.to.value, pathInfo);
+        }
+        vertices.forEach((V v2, Vertex<V, E> vertex2) ->
+                vertices.forEach((V v1, Vertex<V, E> vertex1) ->
+                        vertices.forEach((V v3, Vertex<V, E> vertex3) -> {
+                            if (v1.equals(v2) || v2.equals(v3) || v1.equals(v3)) {
+                                return;
+                            }
+                            PathInfo<V, E> path12 = getPathInfo(v1, v2, paths);
+                            if (path12 == null) {
+                                return;
+                            }
+                            PathInfo<V, E> path23 = getPathInfo(v2, v3, paths);
+                            if (path23 == null) {
+                                return;
+                            }
+                            PathInfo<V, E> path13 = getPathInfo(v1, v3, paths);
+                            E newPathWeight = weightManager.add(path12.weight, path23.weight);
+                            if (path13 != null) {
+                                if (weightManager.compare(newPathWeight, path13.weight) >= 0) {
+                                    return;
+                                }
+                                path13.edgeInfos.clear();
+                            } else {
+                                path13 = new PathInfo<>();
+                                // 应为 path12 有了  所以 paths.get(v1) 一定存在
+                                paths.get(v1).put(v3, path13);
+                                // Map<V, PathInfo<V, E>> map = new HashMap<>();
+                                // map.put(v3, path13);
+                                // paths.put(v1, map);
+                            }
+                            path13.weight = newPathWeight;
+                            path13.edgeInfos.addAll(path12.edgeInfos);
+                            path13.edgeInfos.addAll(path23.edgeInfos);
+                        })));
+        return paths;
+    }
+
+    private PathInfo<V, E> getPathInfo(V from, V to, Map<V, Map<V, PathInfo<V, E>>> paths) {
+        Map<V, PathInfo<V, E>> map = paths.get(from);
+        return map == null ? null : map.get(to);
+    }
 
     /*public Set<EdgeInfo<V, E>> myKruskal() {
         if (edges.size() == 0) {
