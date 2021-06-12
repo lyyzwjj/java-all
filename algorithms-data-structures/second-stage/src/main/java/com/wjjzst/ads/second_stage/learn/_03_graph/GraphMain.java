@@ -23,6 +23,11 @@ public class GraphMain {
         public Double add(Double w1, Double w2) {
             return w1 + w2;
         }
+
+        @Override
+        public Double zero() {
+            return 0.0d;
+        }
     };
 
     public static void main(String[] args) {
@@ -36,9 +41,14 @@ public class GraphMain {
     }
 
     private static void testSp() {
-        Graph<Object, Double> graph = undirectedGraph(Data.SP);
-        Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath("A");
-        sp.forEach((Object v, Graph.PathInfo<Object, Double> path) -> System.out.println(v + " - " + path));
+        // Graph<Object, Double> graph = undirectedGraph(Data.SP);// 无负权边
+        // Graph<Object, Double> graph = undirectedGraph(Data.NEGATIVE_WEIGHT1);// 有负权边
+        // Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath("A");
+        Graph<Object, Double> graph = undirectedGraph(Data.NEGATIVE_WEIGHT2); // 有负权环
+        Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath(0);
+        if (sp != null) {
+            sp.forEach((Object v, Graph.PathInfo<Object, Double> path) -> System.out.println(v + " - " + path));
+        }
     }
 
     private static void test1() {
@@ -51,6 +61,11 @@ public class GraphMain {
             @Override
             public Integer add(Integer w1, Integer w2) {
                 return w1 + w2;
+            }
+
+            @Override
+            public Integer zero() {
+                return 0;
             }
         };
         ListGraph<String, Integer> graph = new ListGraph<>(weightManager);

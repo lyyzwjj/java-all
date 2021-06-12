@@ -261,7 +261,8 @@ public class ListGraph<V, E> extends Graph<V, E> {
 
     @Override
     public Map<V, PathInfo<V, E>> shortestPath(V begin) {
-        return dijkstra(begin);
+        // return dijkstra(begin);
+        return bellmanFord(begin);
     }
 
 
@@ -288,7 +289,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
                 if (selectedPaths.containsKey(edge.to.value)) {
                     continue;
                 }
-                relax(edge, minPathInfo, paths);
+                dijkstraRelax(edge, minPathInfo, paths);
             }
         }
         // 删除首个节点
@@ -296,7 +297,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
         return selectedPaths;
     }
 
-    private void relax(Edge<V, E> edge, PathInfo<V, E> fromPath, Map<Vertex<V, E>, PathInfo<V, E>> paths) {
+    private void dijkstraRelax(Edge<V, E> edge, PathInfo<V, E> fromPath, Map<Vertex<V, E>, PathInfo<V, E>> paths) {
         PathInfo<V, E> oldPath = paths.get(edge.to);
         E newWeight = weightManager.add(fromPath.weight, edge.weight);
         if (oldPath != null) {
@@ -313,6 +314,62 @@ public class ListGraph<V, E> extends Graph<V, E> {
         oldPath.weight = newWeight;
         oldPath.edgeInfos.addAll(fromPath.edgeInfos);
         oldPath.edgeInfos.add(edge.info());
+    }
+
+    public Map<V, PathInfo<V, E>> bellmanFord(V begin) {
+        Vertex<V, E> beginVertex = vertices.get(begin);
+        if (beginVertex == null) {
+            return null;
+        }
+        Map<V, PathInfo<V, E>> selectedPaths = new HashMap<>();
+        PathInfo<V, E> edgeInfo = new PathInfo<>();
+        edgeInfo.weight = weightManager.zero();
+        selectedPaths.put(begin, edgeInfo);
+        int count = vertices.size() - 1;
+        // 对所有的边进行一次松弛 (n-1)次松弛
+        for (int i = 0; i < count; i++) {
+            for (Edge<V, E> edge : edges) {
+                PathInfo<V, E> pathInfo = selectedPaths.get(edge.from.value);
+                if (pathInfo == null) {
+                    continue;
+                }
+                bellmanFordRelax(edge, pathInfo, selectedPaths);
+            }
+        }
+        // n-1次对所有边松弛后再松弛一遍
+        for (Edge<V, E> edge : edges) {
+            PathInfo<V, E> pathInfo = selectedPaths.get(edge.from.value);
+            if (pathInfo == null) {
+                continue;
+            }
+            if (bellmanFordRelax(edge, pathInfo, selectedPaths)) {
+                System.out.println("有负权环,找不到最短路径");
+                return null;
+            }
+        }
+        // 删除首个节点
+        selectedPaths.remove(begin);
+        return selectedPaths;
+    }
+
+    private boolean bellmanFordRelax(Edge<V, E> edge, PathInfo<V, E> fromPath, Map<V, PathInfo<V, E>> paths) {
+        PathInfo<V, E> oldPath = paths.get(edge.to.value);
+        E newWeight = weightManager.add(fromPath.weight, edge.weight);
+        if (oldPath != null) {
+            // newWeight = weightManager.add(fromPath.weight, edge.weight);
+            if (weightManager.compare(newWeight, oldPath.weight) >= 0) {
+                return false;
+            }
+            oldPath.edgeInfos.clear();
+        } else {
+            // newWeight = edge.weight;
+            oldPath = new PathInfo<>();
+            paths.put(edge.to.value, oldPath);
+        }
+        oldPath.weight = newWeight;
+        oldPath.edgeInfos.addAll(fromPath.edgeInfos);
+        oldPath.edgeInfos.add(edge.info());
+        return true;
     }
 
     private Map.Entry<Vertex<V, E>, PathInfo<V, E>> getMinPath(Map<Vertex<V, E>, PathInfo<V, E>> paths) {
