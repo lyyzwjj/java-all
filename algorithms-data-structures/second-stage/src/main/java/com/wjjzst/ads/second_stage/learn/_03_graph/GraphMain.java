@@ -35,9 +35,9 @@ public class GraphMain {
         // testBreadthFirstSearch();
         // testDepthFirstSearch();
         // testTopologicalSort();
-        // minimumSpanningTree();
+        minimumSpanningTree();
         // testShortestPath();
-        testMultiShortestPath();
+        // testMultiShortestPath();
     }
 
     private static void testShortestPath() {
@@ -98,7 +98,8 @@ public class GraphMain {
     }
 
     private static void minimumSpanningTree() {
-        Graph<Object, Double> graph = undirectedGraph(Data.MST_02, new Graph.WeightManager<Double>() {
+        // Graph<Object, Double> graph = undirectedGraph(Data.MST_02, new Graph.WeightManager<Double>() {
+        Graph<Object, Double> graph = undirectedGraph(Data.MST_01, new Graph.WeightManager<Double>() {
             @Override
             public int compare(Double w1, Double w2) {
                 return w2.compareTo(w1);

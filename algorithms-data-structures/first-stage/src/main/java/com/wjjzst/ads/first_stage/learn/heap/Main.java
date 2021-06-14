@@ -11,7 +11,7 @@ import java.util.Comparator;
  */
 public class Main {
     public static void main(String[] args) {
-        test1();
+        // test1();
         test2();
     }
 
@@ -24,16 +24,18 @@ public class Main {
         heap.add(27);
         heap.add(33);
         heap.add(6);
-        BinaryTrees.print(heap);
-        System.out.println();
-        heap.remove();
-        BinaryTrees.print(heap);
-        System.out.println();
-        heap.remove();
-        BinaryTrees.print(heap);
-        System.out.println();
-        heap.replace(1);
-        BinaryTrees.print(heap);
+        while (!heap.isEmpty()) {
+            // BinaryTrees.println(heap);
+            System.out.println(heap.remove());
+        }
+//        heap.remove();
+//        BinaryTrees.print(heap);
+//        System.out.println();
+//        heap.remove();
+//        BinaryTrees.print(heap);
+//        System.out.println();
+//        heap.replace(1);
+//        BinaryTrees.print(heap);
     }
 
     public static void test1() {

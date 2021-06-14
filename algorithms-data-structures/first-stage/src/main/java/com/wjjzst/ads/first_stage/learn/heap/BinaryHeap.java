@@ -91,7 +91,6 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
         elements[0] = elements[lastIndex];
         elements[lastIndex] = null;
         siftDown(0);
-
         return root;
     }
 
