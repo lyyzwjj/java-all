@@ -15,8 +15,8 @@ public class GraphMain {
     private static final Graph.WeightManager<Double> weightManager = new Graph.WeightManager<Double>() {
         @Override
         public int compare(Double w1, Double w2) {
-            // return w1.compareTo(w2); //大顶堆
-            return w1.compareTo(w2); // 小顶堆
+            // return w1.compareTo(w2); //小顶堆
+            return w1.compareTo(w2); // 大顶堆
         }
 
         @Override
@@ -31,29 +31,29 @@ public class GraphMain {
     };
 
     public static void main(String[] args) {
-//        test1();
-//        testBfs();
-//        testDfs();
-//        testTopologicalSort();
-//        minimumSpanningTree();
-//        testSp();
-        testMultiSp();
+        // test1();
+        // testBreadthFirstSearch();
+        // testDepthFirstSearch();
+        // testTopologicalSort();
+        // minimumSpanningTree();
+        // testShortestPath();
+        testMultiShortestPath();
     }
 
-    private static void testSp() {
-        Graph<Object, Double> graph = undirectedGraph(Data.SP);// 无负权边
+    private static void testShortestPath() {
+        // Graph<Object, Double> graph = undirectedGraph(Data.SP);// 无负权边
         // Graph<Object, Double> graph = undirectedGraph(Data.NEGATIVE_WEIGHT1);// 有负权边
-        Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath("A");
-        // Graph<Object, Double> graph = undirectedGraph(Data.NEGATIVE_WEIGHT2); // 有负权环
-        // Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath(0);
+        // Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath("A");
+        Graph<Object, Double> graph = undirectedGraph(Data.NEGATIVE_WEIGHT2); // 有负权环
+        Map<Object, Graph.PathInfo<Object, Double>> sp = graph.shortestPath(0);
         if (sp != null) {
             sp.forEach((Object v, Graph.PathInfo<Object, Double> path) -> System.out.println(v + " - " + path));
         }
     }
 
-    private static void testMultiSp() {
-        // Graph<Object, Double> graph = directedGraph(Data.SP);// 无负权边
-        Graph<Object, Double> graph = directedGraph(Data.NEGATIVE_WEIGHT1);// 有负权边
+    private static void testMultiShortestPath() {
+        Graph<Object, Double> graph = directedGraph(Data.SP);// 无负权边
+        // Graph<Object, Double> graph = directedGraph(Data.NEGATIVE_WEIGHT1);// 有负权边
         Map<Object, Map<Object, Graph.PathInfo<Object, Double>>> sp = graph.shortestPath();
         // Graph<Object, Double> graph = directedGraph(Data.NEGATIVE_WEIGHT2); // 有负权环
         // Map<Object, Map<Object, Graph.PathInfo<Object, Double>>> sp = graph.shortestPath();
@@ -98,8 +98,24 @@ public class GraphMain {
     }
 
     private static void minimumSpanningTree() {
-        Graph<Object, Double> graph = undirectedGraph(Data.MST_02);
-        Set<EdgeInfo<Object, Double>> edgeInfos = graph.minimumSpanningTree();
+        Graph<Object, Double> graph = undirectedGraph(Data.MST_02, new Graph.WeightManager<Double>() {
+            @Override
+            public int compare(Double w1, Double w2) {
+                return w2.compareTo(w1);
+            }
+
+            @Override
+            public Double add(Double w1, Double w2) {
+                return w1 + w2;
+            }
+
+            @Override
+            public Double zero() {
+                return 0.0;
+            }
+        });
+        Set<EdgeInfo<Object, Double>> edgeInfos = graph.prim();
+        // Set<EdgeInfo<Object, Double>> edgeInfos = graph.kruskal();
         for (EdgeInfo<Object, Double> edgeInfo : edgeInfos) {
             System.out.println(edgeInfo);
         }
@@ -111,30 +127,31 @@ public class GraphMain {
         System.out.println(list);
     }
 
-    private static void testBfs() {
-        /*Graph<Object, Double> graph = undirectedGraph(Data.BFS_01);
-        graph.bfs("A", v -> {
+    private static void testBreadthFirstSearch() {
+        Graph<Object, Double> graph = undirectedGraph(Data.BFS_01);
+        graph.breadthFirstSearch("A", v -> {
             System.out.println(v);
             return false;
-        });*/
-        Graph<Object, Double> graph = directedGraph(Data.BFS_02);
-        graph.bfs(0, v -> {
+        });
+        graph = directedGraph(Data.BFS_02);
+        graph.breadthFirstSearch(0, v -> {
             System.out.println(v);
             // return v.equals(2);
             return false;
         });
     }
 
-    private static void testDfs() {
-        /*Graph<Object, Double> graph = undirectedGraph(Data.DFS_01);
-        graph.dfs(0, v -> {
+    private static void testDepthFirstSearch() {
+        Graph<Object, Double> graph = undirectedGraph(Data.DFS_01);
+        graph.depthFirstSearch(0, v -> {
             System.out.println(v);
             return false;
-        });*/
-        Graph<Object, Double> graph = directedGraph(Data.DFS_02);
-        graph.dfs("d", v -> {
+        });
+        graph = directedGraph(Data.DFS_02);
+        graph.depthFirstSearch("d", v -> {
             System.out.println(v);
-            return v.equals("e");
+            // return v.equals("e");
+            return false;
         });
     }
 
@@ -142,7 +159,14 @@ public class GraphMain {
      * 有向图
      */
     private static Graph<Object, Double> directedGraph(Object[][] data) {
-        Graph<Object, Double> graph = new ListGraph<>(weightManager);
+        return directedGraph(data, null);
+    }
+
+    private static Graph<Object, Double> directedGraph(Object[][] data, Graph.WeightManager<Double> customizeWeightManager) {
+        if (customizeWeightManager == null) {
+            customizeWeightManager = weightManager;
+        }
+        Graph<Object, Double> graph = new ListGraph<>(customizeWeightManager);
         for (Object[] edge : data) {
             if (edge.length == 1) {
                 graph.addVertex(edge[0]);
@@ -163,7 +187,14 @@ public class GraphMain {
      * @return
      */
     private static Graph<Object, Double> undirectedGraph(Object[][] data) {
-        Graph<Object, Double> graph = new ListGraph<>(weightManager);
+        return undirectedGraph(data, null);
+    }
+
+    private static Graph<Object, Double> undirectedGraph(Object[][] data, Graph.WeightManager<Double> customizeWeightManager) {
+        if (customizeWeightManager == null) {
+            customizeWeightManager = weightManager;
+        }
+        Graph<Object, Double> graph = new ListGraph<>(customizeWeightManager);
         for (Object[] edge : data) {
             if (edge.length == 1) {
                 graph.addVertex(edge[0]);

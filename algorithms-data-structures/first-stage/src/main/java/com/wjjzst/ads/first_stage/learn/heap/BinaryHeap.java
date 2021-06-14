@@ -36,7 +36,6 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
             for (int i = 0; i < elements.length; i++) {
                 this.elements[i] = elements[i];
             }
-            this.elements = elements;
         }
         heapify();
     }

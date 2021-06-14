@@ -104,7 +104,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
     }
 
     @Override
-    public void bfs(V begin, VertexVisitor<V> visitor) {
+    public void breadthFirstSearch(V begin, VertexVisitor<V> visitor) {
         Vertex<V, E> beginVertex = vertices.get(begin);
         if (beginVertex == null) return;
         Set<Vertex<V, E>> visitedVertices = new HashSet<>();
@@ -155,7 +155,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
     }*/
 
     @Override
-    public void dfs(V begin, VertexVisitor<V> visitor) {
+    public void depthFirstSearch(V begin, VertexVisitor<V> visitor) {
         Vertex<V, E> beginVertex = vertices.get(begin);
         if (beginVertex == null) return;
         Set<Vertex<V, E>> visitedVertices = new HashSet<>();
@@ -168,7 +168,7 @@ public class ListGraph<V, E> extends Graph<V, E> {
             Vertex<V, E> vertex = stack.pop();
             for (Edge<V, E> edge : vertex.outEdges) {
                 if (!visitedVertices.contains(edge.to)) {
-                    stack.push(vertex);
+                    stack.push(edge.from);
                     stack.push(edge.to);
                     visitedVertices.add(edge.to);
                     // System.out.println(edge.to.value);
@@ -212,8 +212,8 @@ public class ListGraph<V, E> extends Graph<V, E> {
 
     @Override
     public Set<EdgeInfo<V, E>> minimumSpanningTree() {
-        // Set<EdgeInfo<V, E>> edgeInfos = prim();
-        Set<EdgeInfo<V, E>> edgeInfos = kruskal();
+        Set<EdgeInfo<V, E>> edgeInfos = prim();
+        // Set<EdgeInfo<V, E>> edgeInfos = kruskal();
         return edgeInfos;
     }
 
@@ -232,8 +232,8 @@ public class ListGraph<V, E> extends Graph<V, E> {
                 edgeInfos.add(edge.info());
                 addedVertices.add(edge.to);
                 heap.addAll(edge.to.outEdges);
-                BinaryTrees.print(heap);
-                System.out.println("\n\n");
+                // BinaryTrees.print(heap);
+                // System.out.println("\n\n");
             }
         }
         return edgeInfos;
@@ -261,8 +261,8 @@ public class ListGraph<V, E> extends Graph<V, E> {
 
     @Override
     public Map<V, PathInfo<V, E>> shortestPath(V begin) {
-        // return dijkstra(begin);
-        return bellmanFord(begin);
+        return dijkstra(begin);
+        // return bellmanFord(begin);
     }
 
     public Map<V, PathInfo<V, E>> dijkstra(V begin) {

@@ -37,15 +37,19 @@ public abstract class Graph<V, E> {
     public abstract void removeEdge(V from, V to);
 
     // 广度优先搜索  Breadth First Search, BFS 宽度优先搜索 横向优先搜索 类似层序遍历
-    public abstract void bfs(V begin, VertexVisitor<V> visitor);
+    public abstract void breadthFirstSearch(V begin, VertexVisitor<V> visitor);
 
     // 深度优先搜索 Depth First Search, SFS  类似前序遍历
-    public abstract void dfs(V begin, VertexVisitor<V> visitor);
+    public abstract void depthFirstSearch(V begin, VertexVisitor<V> visitor);
 
     // 拓扑排序 有向无环图 一直找入度为0的
     public abstract List<V> topologicalSort();
 
     public abstract Set<EdgeInfo<V, E>> minimumSpanningTree();
+
+    public abstract Set<EdgeInfo<V, E>> prim();
+
+    public abstract Set<EdgeInfo<V, E>> kruskal();
 
     public abstract Map<V, PathInfo<V, E>> shortestPath(V begin);
 
