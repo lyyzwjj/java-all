@@ -21,6 +21,7 @@
         <module>queue</module>
         <module>springcloud</module>
         <module>spring</module>
+        <module>algorithms-data-structures/designpattern</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
