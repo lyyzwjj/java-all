@@ -1,8 +1,8 @@
 package com.wjjzst.springcloud.consumer.feign.multiparam.controller;
 
-import com.wjjzst.test.dto.TestDTO;
-import com.wjjzst.test.enums.ComplexEnum;
-import com.wjjzst.test.enums.TestEnum;
+import com.wjjzst.util.dto.TestDTO;
+import com.wjjzst.util.enums.ComplexEnum;
+import com.wjjzst.util.enums.TestEnum;
 import com.wjjzst.springcloud.consumer.feign.multiparam.model.User;
 import com.wjjzst.springcloud.consumer.feign.multiparam.service.UserFeignService;
 import io.swagger.annotations.ApiParam;

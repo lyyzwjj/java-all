@@ -20,7 +20,6 @@
         <module>nosql</module>
         <module>queue</module>
         <module>springcloud</module>
-        <module>test</module>
         <module>spring</module>
     </modules>
     <properties>

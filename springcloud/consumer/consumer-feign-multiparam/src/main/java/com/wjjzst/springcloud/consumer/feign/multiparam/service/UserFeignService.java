@@ -1,7 +1,7 @@
 package com.wjjzst.springcloud.consumer.feign.multiparam.service;
 
-import com.wjjzst.test.dto.TestDTO;
-import com.wjjzst.test.enums.TestEnum;
+import com.wjjzst.util.dto.TestDTO;
+import com.wjjzst.util.enums.TestEnum;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
