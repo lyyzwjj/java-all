@@ -1,11 +1,11 @@
-package com.wjjzst.designpattern.iterator;
+package com.wjjzst.designpattern._01iterator;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 不用模式的实现
- * @author zhonghuashishan
+ * @author wjj
  *
  */
 public class WithoutIteratorPatternDemo {
@@ -72,7 +72,7 @@ public class WithoutIteratorPatternDemo {
 
 //	/**
 //	 * 教室类
-//	 * @author zhonghuashishan
+//	 * @author wjj
 //	 *
 //	 */
 //	public static class Classroom {

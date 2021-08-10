@@ -1,8 +1,8 @@
-package com.wjjzst.designpattern.template;
+package com.wjjzst.designpattern._03template;
 
 /**
  * 使用了模板方法模式
- * @author zhonghuashishan
+ * @author wjj
  *
  */
 public class TemplateMethodPatterDemo {

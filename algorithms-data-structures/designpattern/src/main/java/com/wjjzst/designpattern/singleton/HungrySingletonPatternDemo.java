@@ -2,7 +2,7 @@ package com.wjjzst.designpattern.singleton;
 
 /**
  * 饿汉模式
- * @author zhonghuashishan
+ * @author wjj
  *
  */
 public class HungrySingletonPatternDemo {

@@ -1,8 +1,8 @@
-package com.wjjzst.designpattern.template;
+package com.wjjzst.designpattern._03template;
 
 /**
  * 不用模式的实现
- * @author zhonghuashishan
+ * @author wjj
  *
  */
 public class WithoutTempalteMethodPatternDemo {

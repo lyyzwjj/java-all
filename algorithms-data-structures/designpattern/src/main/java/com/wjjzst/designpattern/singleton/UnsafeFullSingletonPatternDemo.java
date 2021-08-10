@@ -2,7 +2,7 @@ package com.wjjzst.designpattern.singleton;
 
 /**
  * 线程不安全的饱汉模式
- * @author zhonghuashishan
+ * @author wjj
  *
  */
 public class UnsafeFullSingletonPatternDemo {

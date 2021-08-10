@@ -1,8 +1,8 @@
-package com.wjjzst.designpattern.adapter;
+package com.wjjzst.designpattern._02adapter;
 
 /**
  * 不用设计模式的实现
- * @author zhonghuashishan
+ * @author wjj
  *
  */
 public class WithoutAdapterPatternDemo {

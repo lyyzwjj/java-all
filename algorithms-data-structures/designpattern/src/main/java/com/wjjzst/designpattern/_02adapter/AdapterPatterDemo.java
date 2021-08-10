@@ -1,8 +1,8 @@
-package com.wjjzst.designpattern.adapter;
+package com.wjjzst.designpattern._02adapter;
 
 /**
  * 适配器模式demo
- * @author zhonghuashishan
+ * @author wjj
  *
  */
 public class AdapterPatterDemo {

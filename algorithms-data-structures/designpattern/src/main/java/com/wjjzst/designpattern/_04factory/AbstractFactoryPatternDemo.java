@@ -1,4 +1,4 @@
-package com.wjjzst.designpattern.factory;
+package com.wjjzst.designpattern._04factory;
 
 public class AbstractFactoryPatternDemo {
 	

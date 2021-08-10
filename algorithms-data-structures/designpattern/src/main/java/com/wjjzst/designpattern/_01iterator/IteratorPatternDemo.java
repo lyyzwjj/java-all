@@ -1,11 +1,11 @@
-package com.wjjzst.designpattern.iterator;
+package com.wjjzst.designpattern._01iterator;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 用迭代器模式的实现
- * @author zhonghuashishan
+ * @author wjj
  *
  */
 public class IteratorPatternDemo {

@@ -3,7 +3,7 @@ package com.wjjzst.designpattern.singleton;
 /**
  * 这个才是我们实际开发过程中，最最常用的单例模式，内部类的方式来实现
  * 
- * @author zhonghuashishan
+ * @author wjj
  *
  */
 public class InnerClassFullSingletonPatternDemo {
