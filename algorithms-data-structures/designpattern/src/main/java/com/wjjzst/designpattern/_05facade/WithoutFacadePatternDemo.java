@@ -1,4 +1,4 @@
-package com.wjjzst.designpattern.facade;
+package com.wjjzst.designpattern._05facade;
 
 public class WithoutFacadePatternDemo {
 	

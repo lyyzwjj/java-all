@@ -1,4 +1,4 @@
-package com.wjjzst.designpattern.builder;
+package com.wjjzst.designpattern._06builder;
 
 public class OptimizedBuilderPatternDemo {
 	

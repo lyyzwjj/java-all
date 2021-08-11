@@ -1,4 +1,4 @@
-package com.wjjzst.designpattern.mediator;
+package com.wjjzst.designpattern._08mediator;
 
 public class WithoutMediatorPatternDemo {
 	

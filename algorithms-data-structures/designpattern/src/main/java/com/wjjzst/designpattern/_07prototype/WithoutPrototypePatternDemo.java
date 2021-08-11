@@ -1,4 +1,4 @@
-package com.wjjzst.designpattern.prototype;
+package com.wjjzst.designpattern._07prototype;
 
 public class WithoutPrototypePatternDemo {
 	
