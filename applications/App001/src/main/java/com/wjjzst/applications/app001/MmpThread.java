@@ -18,6 +18,7 @@ public class MmpThread implements Callable<Boolean> {
             while (true) {
                 // ArrayBlockingQueue：如果队列满了，或者是空的，那么都会在执行操作的时候阻塞住。
                 Request request = queue.take();
+                System.out.println("===========日志===========: 出队列成功");
                 boolean forceRefresh = request.isForceRefresh();
                 if (!forceRefresh) {
                     // 先做读请求的去重
@@ -36,7 +37,8 @@ public class MmpThread implements Callable<Boolean> {
                         // 说明前面已经有一个数据库更新请求+一个缓存刷新请求了，大家想一想
                         if (flag != null && !flag) {
                             // 对于这种读请求，直接就过滤掉，不要放到后面的内存队列里面去了
-                            return true;
+                            // return true;
+                            continue;
                         }
                     }
                 }

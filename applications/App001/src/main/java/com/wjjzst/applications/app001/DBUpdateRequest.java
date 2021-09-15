@@ -5,9 +5,8 @@ public class DBUpdateRequest implements Request {
     private boolean forceRefresh;
     private Integer size;
 
-    public DBUpdateRequest(Integer productId, boolean forceRefresh, Integer size) {
+    public DBUpdateRequest(Integer productId, Integer size) {
         this.productId = productId;
-        this.forceRefresh = forceRefresh;
         this.size = size;
     }
 
@@ -23,6 +22,6 @@ public class DBUpdateRequest implements Request {
 
     @Override
     public boolean isForceRefresh() {
-        return forceRefresh;
+        return false;
     }
 }

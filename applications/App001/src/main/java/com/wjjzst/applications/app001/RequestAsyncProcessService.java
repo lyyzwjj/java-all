@@ -15,7 +15,11 @@ public class RequestAsyncProcessService {
         RequestQueue requestQueue = RequestQueue.getInstance();
         int index = (requestQueue.getQueueSize() - 1) & hash;
         ArrayBlockingQueue<Request> queue = requestQueue.getQueueByIndex(index);
-        System.out.println("添加进队列");
+        if (request instanceof DBUpdateRequest) {
+            System.out.println("添加更新数据库队列" + index);
+        } else {
+            System.out.println("添加更新缓存队列" + index);
+        }
         queue.put(request);
     }
 }

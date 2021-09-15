@@ -8,19 +8,37 @@ public class App {
         MmpThreadPool.init();
         Integer productId = 1;
         for (int j = 0; j < 1000; j++) {
-            for (int i = 0; i < 10; i++) {
-                Request request = new CacheRefreshRequest(productId, false);
-                RequestAsyncProcessService.process(request);
+            for (int i = 0; i < 2; i++) {
+                new Thread(() -> {
+                    try {
+                        Request request = new CacheRefreshRequest(productId, false);
+                        RequestAsyncProcessService.process(request);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
             }
             if ((int) (Math.random() * 1000) > 100) {
-                Request request = new DBUpdateRequest(productId, true, 200);
-                RequestAsyncProcessService.process(request);
+                new Thread(() -> {
+                    try {
+                        Request request = new DBUpdateRequest(productId, 200);
+                        RequestAsyncProcessService.process(request);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
             }
-            for (int i = 0; i < 5; i++) {
-                Request request = new CacheRefreshRequest(productId, false);
-                RequestAsyncProcessService.process(request);
+            for (int i = 0; i < 2; i++) {
+                new Thread(() -> {
+                    try {
+                        Request request = new CacheRefreshRequest(productId, false);
+                        RequestAsyncProcessService.process(request);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }).start();
             }
-            TimeUnit.MICROSECONDS.sleep(500);
+            TimeUnit.SECONDS.sleep(2);
 
         }
     }
