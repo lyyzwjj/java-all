@@ -1,6 +1,6 @@
 package com.wjjzst.db.mysql.shardingsphere.config;
 
-import com.wjjzst.util.utils.WjjDateUtils;
+import com.wjjzst.common.utils.WjjDateUtils;
 import org.apache.shardingsphere.api.sharding.standard.PreciseShardingAlgorithm;
 import org.apache.shardingsphere.api.sharding.standard.PreciseShardingValue;
 import org.springframework.context.annotation.Configuration;

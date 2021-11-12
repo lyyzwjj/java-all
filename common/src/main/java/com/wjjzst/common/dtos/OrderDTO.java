@@ -1,20 +1,21 @@
-package com.wjjzst.queue.kafka.kafkaspringbootproducer.model;
+package com.wjjzst.common.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.UUID;
 
 @AllArgsConstructor
 @Data  //会复写equals 和hashCode方法
-public class Order implements Serializable {
-    private String id;
+@ToString
+public class OrderDTO implements Serializable {
+    private Integer id;
     private String name;
 
-    public Order() {
-        this.id = UUID.randomUUID().toString();
+    public OrderDTO() {
+        this.id = (int) (Math.random() * Integer.MAX_VALUE);
         this.name = UUID.randomUUID().toString();
     }
 }

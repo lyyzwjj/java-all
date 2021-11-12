@@ -1,8 +1,8 @@
 package com.wjjzst.springcloud.provider.feign.multiparam.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.wjjzst.util.dto.TestDTO;
-import com.wjjzst.util.enums.TestEnum;
+import com.wjjzst.common.dtos.TestDTO;
+import com.wjjzst.common.enums.TestEnum;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

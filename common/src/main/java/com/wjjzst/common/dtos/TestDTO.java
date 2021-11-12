@@ -1,7 +1,7 @@
-package com.wjjzst.util.dto;
+package com.wjjzst.common.dtos;
 
-import com.wjjzst.util.enums.ComplexEnum;
-import com.wjjzst.util.enums.TestEnum;
+import com.wjjzst.common.enums.ComplexEnum;
+import com.wjjzst.common.enums.TestEnum;
 import lombok.Data;
 
 /**

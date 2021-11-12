@@ -1,4 +1,4 @@
-package com.wjjzst.util.enums;
+package com.wjjzst.common.enums;
 
 /**
  * @author: Wjj

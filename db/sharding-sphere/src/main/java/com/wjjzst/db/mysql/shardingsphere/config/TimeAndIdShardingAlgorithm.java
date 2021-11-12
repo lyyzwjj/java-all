@@ -1,7 +1,7 @@
 package com.wjjzst.db.mysql.shardingsphere.config;
 
 import com.alibaba.fastjson.JSON;
-import com.wjjzst.util.utils.WjjDateUtils;
+import com.wjjzst.common.utils.WjjDateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shardingsphere.api.sharding.complex.ComplexKeysShardingAlgorithm;
 import org.apache.shardingsphere.api.sharding.complex.ComplexKeysShardingValue;

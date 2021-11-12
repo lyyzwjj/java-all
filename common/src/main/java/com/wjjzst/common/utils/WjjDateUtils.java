@@ -1,4 +1,4 @@
-package com.wjjzst.util.utils;
+package com.wjjzst.common.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

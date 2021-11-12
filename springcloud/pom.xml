@@ -21,6 +21,7 @@
         <module>hystrix</module>
         <module>springcloud-alibaba</module>
         <module>kubernetes</module>
+        <module>gateway</module>
     </modules>
 
     <artifactId>springcloud</artifactId>
