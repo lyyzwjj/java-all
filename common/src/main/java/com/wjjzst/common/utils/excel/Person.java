@@ -1,4 +1,4 @@
-package com.wjjzst.util.excel;
+package com.wjjzst.common.utils.excel;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.AllArgsConstructor;

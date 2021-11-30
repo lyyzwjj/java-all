@@ -1,4 +1,4 @@
-package com.wjjzst.util;
+package com.wjjzst.common.utils;
 
 import lombok.AllArgsConstructor;
 

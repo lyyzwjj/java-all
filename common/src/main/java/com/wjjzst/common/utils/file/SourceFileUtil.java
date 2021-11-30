@@ -1,4 +1,4 @@
-package com.wjjzst.util.file;
+package com.wjjzst.common.utils.file;
 
 
 import java.io.InputStream;

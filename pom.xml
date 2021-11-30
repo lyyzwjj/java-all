@@ -22,7 +22,6 @@
         <module>springcloud</module>
         <module>spring</module>
         <module>algorithms-data-structures/designpattern</module>
-        <module>wjjutil</module>
         <module>applications</module>
         <module>nosql/etcd</module>
     </modules>

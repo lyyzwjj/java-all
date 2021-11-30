@@ -1,12 +1,11 @@
-package com.wjjzst.util.csv;
+package com.wjjzst.common.utils.csv;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
-import com.wjjzst.util.file.SourceFileUtil;
+import com.wjjzst.common.utils.file.SourceFileUtil;
 
 import java.io.*;
-import java.util.List;
 
 /**
  * @Author: Wjj
