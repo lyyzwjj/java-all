@@ -1,4 +1,4 @@
-package com.wjjzst.io.nio.netty.learn.ch6.exceptionspread;
+package com.wjjzst.io.nio.netty.ch6.exceptionspread;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

@@ -1,4 +1,4 @@
-package com.wjjzst.io.nio.netty.learn.ch3;
+package com.wjjzst.io.nio.netty.ch3;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

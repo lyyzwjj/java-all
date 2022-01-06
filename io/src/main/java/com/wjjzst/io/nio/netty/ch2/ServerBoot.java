@@ -1,4 +1,4 @@
-package com.wjjzst.io.nio.netty.learn.ch2;
+package com.wjjzst.io.nio.netty.ch2;
 
 /**
  * @author Wjj

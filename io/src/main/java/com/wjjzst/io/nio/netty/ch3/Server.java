@@ -1,8 +1,8 @@
-package com.wjjzst.io.nio.netty.learn.ch3;
+package com.wjjzst.io.nio.netty.ch3;
 
-import com.wjjzst.io.nio.netty.learn.ch6.InBoundHandlerA;
-import com.wjjzst.io.nio.netty.learn.ch6.InBoundHandlerB;
-import com.wjjzst.io.nio.netty.learn.ch6.InBoundHandlerC;
+import com.wjjzst.io.nio.netty.ch6.InBoundHandlerA;
+import com.wjjzst.io.nio.netty.ch6.InBoundHandlerB;
+import com.wjjzst.io.nio.netty.ch6.InBoundHandlerC;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;

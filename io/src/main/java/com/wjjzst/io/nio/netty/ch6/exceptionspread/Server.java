@@ -1,6 +1,6 @@
-package com.wjjzst.io.nio.netty.learn.ch6.exceptionspread;
+package com.wjjzst.io.nio.netty.ch6.exceptionspread;
 
-import com.wjjzst.io.nio.netty.learn.ch6.OutBoundHandlerB;
+import com.wjjzst.io.nio.netty.ch6.OutBoundHandlerB;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;

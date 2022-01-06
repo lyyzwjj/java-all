@@ -1,4 +1,4 @@
-package com.wjjzst.io.nio.netty.learn.ch6;
+package com.wjjzst.io.nio.netty.ch6;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
