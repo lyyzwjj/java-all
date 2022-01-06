@@ -1,5 +1,5 @@
 server:
-  port: 29096
+  port: 29092
 spring:
   kafka:
     bootstrap-servers: wjjzst.com:9092
